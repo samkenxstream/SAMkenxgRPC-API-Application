@@ -1,0 +1,272 @@
+<html>
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+		<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+		<script src="https://kit.fontawesome.com/9dcf33b802.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+<!--my custom css-->
+<style>
+
+  #top{
+	background-color: #005dab;
+	height: 100px;
+	width: 100%;
+}
+
+nav a{
+	color: #ffffff;
+	padding: 20px;
+	font-size: 24px;
+
+}
+nav a:hover{
+		color: #eeeeee;
+		text-decoration: none;
+		border-radius: 5px;
+		background-color: #cead4f;	
+}
+
+nav a.active{
+	color: #000000;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #005dab;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 20;
+}
+.dropdown-content a:hover {background-color: #cccccc;}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.sales{
+	margin-top: 80px;
+}
+.call{
+	background-color: #0086d2;
+	padding: 20px;
+}
+.call h1{
+	text-transform: uppercase;
+	color: #ffffff;
+	font-size: 40px;
+}
+
+.btn-white{
+	background: #ffffff;
+	color: #666;
+	border-bottom: 4px solid #ddd;
+	border-radius: 5px;
+	margin: 21px 0 0 0;
+	font-weight: 700px;
+
+}
+
+@media (max-width:768){
+	.m-text-center {text-align: center;}
+	.call-to-action h1{font-size: 25px;}
+}
+
+
+footer{
+	background-color: #000000;
+	width: 100%;
+	height: 100px;
+	color: #ffffff;
+	font-size: 20px;
+	padding-top: 50px;
+}
+footer a {
+	color: #005dab;
+}
+footer a:hover{
+	color: #eeeeee;
+	text-decoration: none;
+}
+</style>
+<!--My main body which contain the header, normal body and footer. Navigation bar is located on the header, my json payload is ocated in the body-->
+<body>
+	<header id="top">
+		<div class=".container-fluid">
+		<nav class="float-right">
+			<a href="https://spectral.energy/" class="active ">Home</a>
+			<div class="dropdown">
+			    <a href="https://spectral.energy/solutions/">Solutions</a>
+                <div class="dropdown-content">
+					<a href="https://spectral.energy/solutions/sbp/">Smart Building Platform</a>
+					<a href="https://spectral.energy/solutions/secs/">Smart Control System</a>
+					<a href="https://spectral.energy/solutions/advisory-services/">Energy Exchange</a>
+                    
+                </div>
+            </div>
+			<a href="https://spectral.energy/news/">News</a>
+			<a href="https://spectral.energy/workwithus/">Work with us</a>
+			<a href="https://spectral.energy/about/" data-toggle="dropdown" >About Us</a>
+		</nav>
+        </div>
+	</header>
+
+	<section class="call" style="color:black;">
+		<div>
+			<span><h1>Implementing microservices with gRPC API</h1> </span>
+			<div class="row">
+				<div class="col-3">
+				<!--	The  API output can be querry as a dictionary in python -->
+				<h4>Json</h4>
+
+					<ol>
+						{% for keys,values in data.items() %}
+							<li>{ <p><p></p>"<bold>{{keys}}</bold>"</p>:{{values}}</p>} </li>
+						{% endfor %}
+					</ol> 
+				</div>
+				<div class="col-3">
+					<!--	Accessing the keys which in our case is the timestamp -->
+					<h3>The  timestamp</h3>
+						<ol>
+							{% for keys in data.keys() %}
+								<li>{{keys}}</li>
+							{% endfor %}
+						</ol> 
+					</div>
+				<div class="col-3">
+					<!--	Accessing the values which in our case is the meterusage -->
+					<h3>The meterUsage</h3>
+						<ol>
+							{% for values in data.values() %}
+								<li>{{values}} </li>
+							{% endfor %}
+						</ol> 
+					</div>
+					<div class="col-3">
+				<!--	Accessing the values which in our case is the meterusage -->
+						<h3>Table for my timeseries data</h3>
+					<table style="margin-left: 0px;"> 
+						<!-- Table headers -->
+							<th> 
+								<tr style="color:#000000; ">     
+								<td>Time</td> 
+								<td>Meterusage</td> 
+						</tr> 
+							</th> 
+							  
+						<!-- For loop logic of jinja template -->
+						{%for keys, values in data.items()%} 
+						  
+						<!-- table rows -->
+						<tr> 
+							<td>{{keys}}</td> 
+							<td>{{values}}</td>
+						</tr> 
+						{%endfor%} 
+						</table> 
+					</div> 
+			</div>
+		</div>
+	</section>
+	<div class= "container">
+		<div class= "row sales">
+			<div class=" col-8">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2434.6869569249066!2d4.907150416035086!3d52.39422497979056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c6084ef54e059f%3A0x2ea8170cfdcdeca7!2sKropaarstraat%2012%2C%201032%20LA%20Amsterdam%2C%20Netherlands!5e0!3m2!1sen!2sde!4v1593137773322!5m2!1sen!2sde" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>			</div>
+			<div class="col-4">
+			<h3> 
+
+				<b>Spectral Energy</b>
+			</h3>
+			<address>
+				<div class="row">
+					<div class="col-2">
+						<span class="fas fa-home fa-2x text-success">
+						</span>
+					</div>
+					<div class="col-10">
+						<span class="lead text-primary">
+							<b>Kropaarstraat 12</b>
+						</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-2">
+						<span class="fas fa-phone fa-2x text-info">
+						</span>
+					</div>
+					<div class="col-10">
+						<span class="lead">
+							<strong><a href="tel:+31207371628">+31 (0) 20 737 1628</a></strong>
+						</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-2">
+						<span class="fas fa-envelope fa-2x text-danger">
+						</span>
+					</div>
+					<div class="col-10">
+						<span class="lead">
+							<strong><a href="mailto:info@spectral.energy">info@spectral.energy</a>
+							</strong><br>
+						</span>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-2">
+						<span class="fab fa-facebook-square fa-2x text-primary"></span>
+					</div>
+					<div class="col-10">
+						<span class="lead">
+							<strong><a href="#" target="_blank">@Spectral</a></strong><br>
+						</span>
+					</div>
+
+				</div>
+			</address>
+			</div>
+		</div>
+	</div>
+<footer class="sales">
+	<div class="container">
+	<div class="row">
+		<div class="float-left col-6">
+			&copy; 2017.Spectral All right reserved
+		</div>
+		<div class="flaot-right col-6">
+			Designed by <a href="http://johnomole.me">John Omole</a>
+			</div>
+
+	</div>
+</div>
+</footer>
+
+</body>
+</script>
+    <!-- JS, Popper.js, and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+
+</html>

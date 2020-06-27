@@ -1,0 +1,16 @@
+//my timeseries proto
+syntax = "proto3";
+
+package data;
+//import "google/protobuf/wrappers.proto";
+// It tell to make HTTP GET request calling the gRPC server CreateData() method, with a Loadtimeseries requesting GetData and responding with GetData.
+service CreateData {
+     rpc Loadtimeseries(GetData) returns (GetData){}
+}
+
+message GetData {
+    string time = 1;
+    float meterusage = 2;
+}
+
+
